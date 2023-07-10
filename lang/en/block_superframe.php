@@ -37,5 +37,21 @@ $string['welcomeuser'] = 'Welcome {$a->firstname} {$a->lastname}';
 $string['superframe:addinstance'] = 'Add a new Super frame block';
 $string['superframe:myaddinstance'] = 'Add a new Super frame block to my moodle';
 
+// Added strings
 $string['message'] = 'I am a full stack developer';
 $string['viewlink'] = 'View Iframe Page';
+
+$string['headerconfig'] = 'Super frame settings';
+$string['headerconfigdesc'] = 'Settings for Super frame';
+
+$string['url'] = 'iFrame URL';
+$string['url_details'] = 'URL to display';
+
+$string['width'] = 'Width';
+$string['width_details'] = 'Width of the frame (px)';
+
+$string['height'] = 'Width';
+$string['height_details'] = 'Height of the frame (px)';
+
+$string['pagelayout'] = 'Page Layout';
+$string['pagelayout_details'] = 'Select a preferred layout';

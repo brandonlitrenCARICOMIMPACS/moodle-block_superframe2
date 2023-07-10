@@ -100,5 +100,11 @@ class block_superframe extends block_base {
     public function instance_allow_multiple() {
         return true;
     }
+  /**
+     * Allow block configuration.
+     */
+    function has_config() {
+        return true;
+    }
 
 }
