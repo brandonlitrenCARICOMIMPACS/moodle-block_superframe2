@@ -55,3 +55,10 @@ $string['height_details'] = 'Height of the frame (px)';
 
 $string['pagelayout'] = 'Page Layout';
 $string['pagelayout_details'] = 'Select a preferred layout';
+
+// Edit form strings.
+$string['size'] = 'Select a size for your iframe';
+$string['custom'] = 'Custom';
+$string['small'] = 'Small';
+$string['medium'] = 'Medium';
+$string['large'] = 'Large';
