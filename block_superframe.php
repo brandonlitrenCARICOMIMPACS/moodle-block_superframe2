@@ -88,6 +88,17 @@ class block_superframe extends block_base {
             $this->content->text .= html_writer::tag('p', html_writer::link($url, get_string('viewlink', 'block_superframe')));
         }
 
+        // List of course students.
+        $users = self::get_course_users($courseid);
+        $this->content->text .= html_writer::start_tag('div');
+        $this->content->text .= html_writer::tag('p', 'List of students enrolled');
+        $this->content->text .= html_writer::start_tag('ul');
+
+        foreach ($users as $user) {
+            $this->content->text .= html_writer::tag('li', $user->firstname . ' ' . $user->lastname);
+        }
+        $this->content->text .= html_writer::end_tag('ul');
+        $this->content->text .= html_writer::end_tag('div');
         return $this->content;
     }
 
@@ -116,4 +127,20 @@ class block_superframe extends block_base {
         return true;
     }
 
+    private static function get_course_users($courseid) {
+        global $DB;
+
+        $sql = "SELECT u.id, u.firstname, u.lastname ";
+        $sql .= "FROM {course} c ";
+        $sql .= "JOIN {context} x ON c.id = x.instanceid ";
+        $sql .= "JOIN {role_assignments} r ON r.contextid = x.id ";
+        $sql .= "JOIN {user} u ON u.id = r.userid ";
+        $sql .= "WHERE c.id = :courseid ";
+        $sql .= "AND r.roleid = :roleid";
+
+        // In real world query should check users are not deleted/suspended.
+        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
+
+        return $records;
+    }
 }
