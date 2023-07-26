@@ -87,21 +87,6 @@ switch ($config->size) {
         break;
 }
 
-// Variables 
-$attributes = ['src' => $url,
-               'width' => $width,
-               'height' => $height];
-$image = '<img src=http://localhost/MyMoodleSite/pluginfile.php/5/user/icon/boost/f1?rev=' . $USER->picture . ' class="userpicture" style="margin-right: 1rem;" width="100" height="100"/>';
+$renderer = $PAGE->get_renderer('block_superframe');
 
-
-// Start output to browser.
-echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('pluginname', 'block_superframe'), 5);
-
-// Content.
-echo '<div style="display: flex; margin-bottom: 1rem">' . $image . '<p style="margin-top: auto; margin-bottom: auto;">' . fullname($USER) . '</p>'  . '</div>';
-echo html_writer::start_tag('iframe', $attributes);
-echo html_writer::end_tag('iframe');
-
-//send footer out to browser
-echo $OUTPUT->footer();
+$renderer->display_view_page($url, $width, $height);

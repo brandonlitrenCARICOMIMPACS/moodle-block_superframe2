@@ -38,6 +38,7 @@ $string['superframe:addinstance'] = 'Add a new Super frame block';
 $string['superframe:myaddinstance'] = 'Add a new Super frame block to my moodle';
 $string['superframe:seeviewpage'] = 'Access the view page';
 $string['superframe:seeviewpagelink'] = 'Blocked the view page';
+$string['superframe:seelist'] = 'List of students';
 
 // Added strings
 $string['message'] = 'I am a full stack developer';

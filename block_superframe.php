@@ -74,31 +74,12 @@ class block_superframe extends block_base {
         // OK let's add some content.
         $this->content = new stdClass();
         $this->content->footer = '';
-        $this->content->text = get_string('welcomeuser', 'block_superframe',
-                $USER);
-        $this->content->text = get_string('message', 'block_superframe');
-        
-         // Add the blockid to the Moodle URL for the view page.
-        $blockid = $this->instance->id;
-        $courseid = $this->page->course->id;
-        $context = context_block::instance($blockid);
-        // Check the capability.
-        if (has_capability('block/superframe:seeviewpagelink', $context)) {
-            $url = new moodle_url('/blocks/superframe/view.php', ['blockid' => $blockid, 'courseid' => $courseid]);
-            $this->content->text .= html_writer::tag('p', html_writer::link($url, get_string('viewlink', 'block_superframe')));
-        }
+
 
         // List of course students.
-        $users = self::get_course_users($courseid);
-        $this->content->text .= html_writer::start_tag('div');
-        $this->content->text .= html_writer::tag('p', 'List of students enrolled');
-        $this->content->text .= html_writer::start_tag('ul');
-
-        foreach ($users as $user) {
-            $this->content->text .= html_writer::tag('li', $user->firstname . ' ' . $user->lastname);
-        }
-        $this->content->text .= html_writer::end_tag('ul');
-        $this->content->text .= html_writer::end_tag('div');
+        $renderer = $this->page->get_renderer('block_superframe');
+        $this->content->text = $renderer->block($this->instance->id, $this->page->course->id);
+        
         return $this->content;
     }
 
@@ -125,22 +106,5 @@ class block_superframe extends block_base {
      */
     function has_config() {
         return true;
-    }
-
-    private static function get_course_users($courseid) {
-        global $DB;
-
-        $sql = "SELECT u.id, u.firstname, u.lastname ";
-        $sql .= "FROM {course} c ";
-        $sql .= "JOIN {context} x ON c.id = x.instanceid ";
-        $sql .= "JOIN {role_assignments} r ON r.contextid = x.id ";
-        $sql .= "JOIN {user} u ON u.id = r.userid ";
-        $sql .= "WHERE c.id = :courseid ";
-        $sql .= "AND r.roleid = :roleid";
-
-        // In real world query should check users are not deleted/suspended.
-        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
-
-        return $records;
     }
 }

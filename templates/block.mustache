@@ -1,0 +1,13 @@
+<d>
+  <h1>{{ welcome }}</h1>
+  {{#url}}
+  <a href="{{{url}}}">{{ text }}</a>
+  {{/url}}
+
+  <div class="">
+    <p>{{ heading }}</p>
+    <ul class="list-group">
+      {{#list}}<li class="list-group-item">{{list}}</li>{{/list}}
+    </ul>
+  </div>
+</div>
