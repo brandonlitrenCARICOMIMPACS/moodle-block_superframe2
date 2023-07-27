@@ -1,13 +1,13 @@
 <d>
   <h1>{{ welcome }}</h1>
-  {{#url}}
   <a href="{{{url}}}">{{ text }}</a>
-  {{/url}}
 
-  <div class="">
-    <p>{{ heading }}</p>
-    <ul class="list-group">
-      {{#list}}<li class="list-group-item">{{list}}</li>{{/list}}
-    </ul>
+  <div class="mt-2">
+    <p>{{ heading }}</p> 
+    {{#list}}
+    <ul class="list-group ml-0 mt-2">
+     <li class="list-group-item list-group-item-warning">{{.}}</li>
+    </ul> 
+    {{/list}}
   </div>
 </div>

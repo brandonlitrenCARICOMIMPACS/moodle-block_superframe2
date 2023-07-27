@@ -26,7 +26,7 @@ class block_superframe_renderer extends plugin_renderer_base {
         echo $this->output->footer();
     }
 
-public function block($blockid, $courseid) {
+public function fetch_block_content($blockid, $courseid) {
         global $USER;
 
         $data = new stdClass();
@@ -43,7 +43,7 @@ public function block($blockid, $courseid) {
         $users = self::get_course_users($courseid);    
         $data->heading .= "List of students enrolled";
         foreach ($users as $user) {
-             $data->list .= $user->firstname . ' ' . $user->lastname;
+             $data->list[] = $user->firstname . ' ' . $user->lastname; 
         }
         }
         // Render the data in a Mustache template.

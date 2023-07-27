@@ -78,7 +78,7 @@ class block_superframe extends block_base {
 
         // List of course students.
         $renderer = $this->page->get_renderer('block_superframe');
-        $this->content->text = $renderer->block($this->instance->id, $this->page->course->id);
+        $this->content->text = $renderer->fetch_block_content($this->instance->id, $this->page->course->id);
         
         return $this->content;
     }
