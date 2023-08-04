@@ -1,0 +1,46 @@
+{{!
+    @template block_superframe/block_data
+
+    This template renders a table of data.
+
+    Classes required for JS:
+    * none.
+
+    Data attributes required for JS:
+    * none.
+
+    Context variables required for this template:
+    * tableheaders an array of column headings for the table.
+    * tabledata an array of arrays of row data for the table body.
+
+    Example context (json):
+    {
+        tableheaders: ["BlockID", "BlockName", "Course", "CatName"],
+        tabledata: [
+            ["Row 1 ID", "Row 1 Block name", "Row 1 Course shortname", "Row 1 Category name"],
+            ["Row 2 ID", "Row 2 Block name", "Row 2 Course shortname", "Row 2 Category name"]
+        ]
+    }
+}}
+<div class="table-responsive">
+    <table class="table table-striped">
+        {{! Using a get_string helper }}
+        <caption>
+            {{#str}}tablecaption, block_superframe{{/str}}
+        </caption>
+        <thead>
+            {{#tableheaders}}
+            <th>{{.}}</th>
+            {{/tableheaders}}
+        </thead>
+        <tbody>
+            {{#tabledata}}
+            <tr>
+                {{#.}}
+                <td>{{.}}</td>
+                {{/.}}
+            </tr>
+            {{/tabledata}}
+        </tbody>
+    </table>
+</div>

@@ -47,6 +47,16 @@ $string['viewlink'] = 'View Iframe Page';
 $string['headerconfig'] = 'Super frame settings';
 $string['headerconfigdesc'] = 'Settings for Super frame';
 
+$string['blockid'] = 'Block id';
+$string['blockname'] = 'Block name';
+$string['course'] = 'Block course';
+$string['catname'] = 'Course category';
+$string['tablecaption'] = 'Block data';
+$string['poptext'] = 'Popup block';
+$string['tablemanager'] = 'Table Manager: ';
+$string['tabletext'] = 'Manage Users in table';
+$string['norecordsfound'] = 'No records found';
+
 $string['url'] = 'iFrame URL';
 $string['url_details'] = 'URL to display';
 

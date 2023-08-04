@@ -26,7 +26,39 @@ class block_superframe_renderer extends plugin_renderer_base {
         echo $this->output->footer();
     }
 
-public function fetch_block_content($blockid, $courseid) {
+    public function display_block_table($records) {
+        // Prepare the data for the template.
+        $table = new stdClass();
+
+        // Table headers.
+        $table->tableheaders = [
+            get_string('blockid', 'block_superframe'),
+            get_string('blockname', 'block_superframe'),
+            get_string('course', 'block_superframe'),
+            get_string('catname', 'block_superframe'),
+        ];
+
+        // Build the data rows.
+        foreach ($records as $record) {
+            $data = array();
+            $data[] = $record->id;
+            $data[] = $record->blockname;
+            $data[] = $record->shortname;
+            $data[] = $record->catname;
+            $table->tabledata[] = $data;
+        }
+
+        // Start output to browser.
+        echo $this->output->header();
+
+        // Call our template to render the data.
+        echo $this->render_from_template('block_superframe/block_data', $table);
+
+        // Finish the page.
+        echo $this->output->footer();
+    }
+
+    public function fetch_block_content($blockid, $courseid) {
         global $USER;
 
         $data = new stdClass();
@@ -39,6 +71,14 @@ public function fetch_block_content($blockid, $courseid) {
             $data->text = get_string('viewlink', 'block_superframe');
         }
 
+        // Add a link to the popup page.
+        $data->popurl = new moodle_url('/blocks/superframe/block_data.php');
+        $data->poptext = get_string('poptext', 'block_superframe');
+
+        // Add a link to the table.
+        $data->tableurl = new moodle_url('/blocks/superframe/tablemanager.php');
+        $data->tabletext = get_string('tabletext', 'block_superframe');
+
         if(has_capability('block/superframe:seelist', $context)){
         $users = self::get_course_users($courseid);    
         $data->heading .= "List of students enrolled";
@@ -49,6 +89,7 @@ public function fetch_block_content($blockid, $courseid) {
         // Render the data in a Mustache template.
         return $this->render_from_template('block_superframe/block', $data);
     }
+    
     private static function get_course_users($courseid) {
         global $DB;
 
