@@ -2,7 +2,7 @@
 
 class block_superframe_renderer extends plugin_renderer_base {
 
- public function display_view_page($url, $width, $height) {
+ public function display_view_page($url, $width, $height, $courseid, $blockid) {
         global $USER;
         $data = new stdClass();
 
@@ -11,10 +11,30 @@ class block_superframe_renderer extends plugin_renderer_base {
         $data->url = $url;
         $data->height = $height;
         $data->width = $width;
+        $data->returnlink = new moodle_url('/course/view.php', ['id' => $courseid]);
+        $data->returntext = get_string('returncourse', 'block_superframe');
 
         // Add the user data.
         $data->fullname = fullname($USER);
         $data->image = $USER->picture;
+
+        // Text for the links and the size parameter.
+        $strings = array();
+        $strings['custom'] = get_string('custom', 'block_superframe');
+        $strings['small'] = get_string('small', 'block_superframe');
+        $strings['medium'] = get_string('medium', 'block_superframe');
+        $strings['large'] = get_string('large', 'block_superframe');
+
+        // Create the data structure for the links.
+        $links = array();
+        $link = new moodle_url('/blocks/superframe/view.php', ['courseid' => $courseid,
+            'blockid' => $blockid]);
+        
+        foreach ($strings as $key => $string) {
+            $links[] = ['link' => $link->out(false, ['size' => $key]), 'text' => $string];
+        }
+
+        $data->linkdata = $links;
 
         // Start output to browser.
         echo $this->output->header();
@@ -64,7 +84,7 @@ class block_superframe_renderer extends plugin_renderer_base {
         $data = new stdClass();
 
         $data->welcome = get_string('welcomeuser', 'block_superframe', $USER);
-        $context = \context_block::instance($blockid);
+        $context = context_block::instance($blockid);
         // Check the capability.
         if (has_capability('block/superframe:seeviewpagelink', $context)) {
             $data->url = new moodle_url('/blocks/superframe/view.php', ['blockid' => $blockid, 'courseid' => $courseid]);

@@ -46,6 +46,7 @@ $string['viewlink'] = 'View Iframe Page';
 
 $string['headerconfig'] = 'Super frame settings';
 $string['headerconfigdesc'] = 'Settings for Super frame';
+$string['returntext'] = 'Go Back';
 
 $string['blockid'] = 'Block id';
 $string['blockname'] = 'Block name';
@@ -56,6 +57,7 @@ $string['poptext'] = 'Popup block';
 $string['tablemanager'] = 'Table Manager: ';
 $string['tabletext'] = 'Manage Users in table';
 $string['norecordsfound'] = 'No records found';
+$string['userlink'] = 'Installed blocks';
 
 $string['url'] = 'iFrame URL';
 $string['url_details'] = 'URL to display';
@@ -70,7 +72,6 @@ $string['pagelayout'] = 'Page Layout';
 $string['pagelayout_details'] = 'Select a preferred layout';
 
 // Edit form strings.
-$string['size'] = 'Select a size for your iframe';
 $string['custom'] = 'Custom';
 $string['small'] = 'Small';
 $string['medium'] = 'Medium';
