@@ -31,7 +31,7 @@
 
 // General.
 $string['pluginname'] = 'Super frame';
-$string['welcomeuser'] = 'Welcome {$a->firstname} {$a->lastname}';
+$string['welcomeuser'] = 'Welcome {$a}';
 
 // Capability strings.
 $string['superframe:addinstance'] = 'Add a new Super frame block';
@@ -43,6 +43,9 @@ $string['superframe:seelist'] = 'List of students';
 // Added strings
 $string['message'] = 'I am a full stack developer';
 $string['viewlink'] = 'View Iframe Page';
+$string['about'] = 'About superframe';
+$string['modalbody'] = 'An example from the MoodleBites Developers level 1 course.';
+$string['modalfooter'] = 'Thank you for your interest.';
 
 $string['headerconfig'] = 'Super frame settings';
 $string['headerconfigdesc'] = 'Settings for Super frame';

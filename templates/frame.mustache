@@ -41,9 +41,14 @@
     />
     <p style="margin-top: auto; margin-bottom: auto">{{ fullname }}</p>
   </div>
- 
+
   <h5>{{ heading }}</h5>
   {{> block_superframe/links}}
   <iframe src="{{ url }}" height="{{ height }}" width="{{ width }}"></iframe>
-  <p><a href="{{{returnlink}}}">{{#str}}returntext, block_superframe{{/str}}</a></p>
+  <p id="block_superframe_about" class="text-primary">
+    {{#str}}about, block_superframe{{/str}}
+  </p>
+  <p>
+    <a href="{{{returnlink}}}">{{#str}}returntext, block_superframe{{/str}}</a>
+  </p>
 </div>
