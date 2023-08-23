@@ -57,6 +57,7 @@ class block_superframe_renderer extends plugin_renderer_base {
     }
 
     public function display_block_table($records) {
+
         // Prepare the data for the template.
         $table = new stdClass();
 
@@ -89,8 +90,10 @@ class block_superframe_renderer extends plugin_renderer_base {
     }
 
     public function fetch_block_content($blockid, $courseid) {
-        global $USER;
+        global $DB, $SITE, $USER;
 
+        $text = "Javascript Button";
+        $this->page->requires->js_call_amd('block_superframe/button_amd', 'button', ['text' => $text]);
         $data = new stdClass();
         $name = $USER->firstname.' '.$USER->lastname;
         $this->page->requires->js_call_amd('block_superframe/test_amd', 'init', ['name' => $name]);
@@ -117,6 +120,11 @@ class block_superframe_renderer extends plugin_renderer_base {
         foreach ($users as $user) {
              $data->list[] = $user->firstname . ' ' . $user->lastname; 
         }
+        }
+        if ($courseid != $SITE->id) { // Prevent issue when the block is shown on the view page.
+            // Was using MUST_EXIST, but what if they'd not viewed the course yet or were not enrolled - an error is shown!
+            $data->access = $DB->get_field('user_lastaccess', 'timeaccess', ['courseid' => $courseid,
+                'userid' => $USER->id]);
         }
         // Render the data in a Mustache template.
         return $this->render_from_template('block_superframe/block', $data);

@@ -1,9 +1,14 @@
-<d>
+<div>
+  <div id="button" class="p-2"></div>
   <h3 class="{{headingclass}}">{{welcome}}</h3>
   <a href="{{{url}}}">{{ text }}</a>
 </br>
+
   <a href="{{{popurl}}}" target="_blank" class="d-block">{{poptext}}</a>
   <a href="{{{tableurl}}}" target="_blank" class="d-block">{{tabletext}}</a>
+  {{#access}}
+    <p>{{#str}}lastaccess, block_superframe{{/str}} {{#userdate}}{{access}}, {{#str}}strftimedate{{/str}}{{/userdate}}</p>
+    {{/access}}
   <div class="mt-2">
     <p>{{ heading }}</p> 
     {{#list}}

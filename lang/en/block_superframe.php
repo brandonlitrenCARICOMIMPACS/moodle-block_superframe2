@@ -46,7 +46,8 @@ $string['viewlink'] = 'View Iframe Page';
 $string['about'] = 'About superframe';
 $string['modalbody'] = 'An example from the MoodleBites Developers level 1 course.';
 $string['modalfooter'] = 'Thank you for your interest.';
-
+$string['pageviewed'] = 'Block page viewed';
+$string['lastaccess'] = 'Last access:';
 $string['headerconfig'] = 'Super frame settings';
 $string['headerconfigdesc'] = 'Settings for Super frame';
 $string['returntext'] = 'Go Back';
